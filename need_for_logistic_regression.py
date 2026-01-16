@@ -32,3 +32,13 @@ sns.regplot(x="time_since_first_purchase",
 sns.regplot(x='time_since_first_purchase', y='has_churned', data=churn, logistic=True, ci=None, line_kws={'color': 'blue'})
 
 plt.show()
+
+
+# Import logit
+from statsmodels.formula.api import logit
+
+# Fit a logistic regression of churn vs. length of relationship using the churn dataset
+mdl_churn_vs_relationship = logit('has_churned ~ time_since_first_purchase', data= churn).fit()
+
+# Print the parameters of the fitted model
+print(mdl_churn_vs_relationship.params)
